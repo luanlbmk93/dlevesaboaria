@@ -43,10 +43,13 @@ git push -u origin main
 **Build settings** (já configurados no `netlify.toml`):
 - Build command: `npm run build:netlify`
 - Plugin: `@netlify/plugin-nextjs`
+- **Publish directory:** deixe em branco (o plugin Next.js cuida disso)
 
 ---
 
 ## Passo 4 — Variáveis de ambiente na Netlify
+
+**Obrigatório antes do deploy.** Sem `DATABASE_URL`, o build falha.
 
 Em **Site configuration** → **Environment variables**, adicione:
 

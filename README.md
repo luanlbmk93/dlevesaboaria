@@ -10,14 +10,12 @@ Site com painel administrativo, loja, carrinho e pedido via WhatsApp.
 npm install
 ```
 
-Configure o `.env` (já vem com SQLite local):
+Copie `.env.example` para `.env` e coloque a connection string do [Neon](https://neon.tech) (PostgreSQL grátis).
 
 ```bash
 npm run setup
 npm run dev
 ```
-
-O banco fica em `prisma/dev.db` — funciona local sem configurar nada na nuvem.
 
 - **Site público:** http://localhost:3000
 - **Painel admin:** http://localhost:3000/admin
@@ -58,7 +56,7 @@ O carrinho monta a lista do pedido e abre o WhatsApp com a mensagem pronta.
 Copie `.env.example` para `.env` e ajuste:
 
 ```
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://usuario:senha@ep-xxx.neon.tech/neondb?sslmode=require"
 ADMIN_EMAIL="admin@dleve.com"
 ADMIN_PASSWORD="admin123"
 JWT_SECRET="sua-chave-secreta"
