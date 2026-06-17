@@ -25,7 +25,7 @@ Na pasta do projeto:
 git init
 git add .
 git commit -m "D'Leve Saboaria"
-git remote add origin https://github.com/luanlbmk93/dlevesabonetaria.git
+git remote add origin https://github.com/luanlbmk93/dlevesaboaria.git
 git branch -M main
 git push -u origin main
 ```
@@ -37,7 +37,7 @@ git push -u origin main
 1. Acesse [app.netlify.com](https://app.netlify.com)
 2. **Add new site** → **Import an existing project**
 3. Escolha **GitHub** e autorize
-4. Selecione o repositório `dlevesabonetaria`
+4. Selecione o repositório `dlevesaboaria`
 5. A Netlify detecta o `netlify.toml` automaticamente
 
 **Build settings** (já configurados no `netlify.toml`):
