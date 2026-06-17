@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { prisma } from '@/lib/db';
+import { getPublicProducts } from '@/lib/catalog';
 import Header from '@/components/site/Header';
 import Footer from '@/components/site/Footer';
 import ShopProductCard from '@/components/site/ShopProductCard';
@@ -14,10 +14,7 @@ type Props = {
 export default async function ProdutosPage({ searchParams }: Props) {
   const { categoria } = await searchParams;
 
-  const products = await prisma.product.findMany({
-    where: { active: true, category: { not: 'destaque' } },
-    orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
-  });
+  const products = await getPublicProducts({ excludeCategories: ['destaque'] });
 
   const categories = [...new Set(products.map((p) => p.category))];
   const filtered = categoria ? products.filter((p) => p.category === categoria) : products;

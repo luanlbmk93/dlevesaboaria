@@ -1,6 +1,6 @@
 # Deploy na Netlify — D'Leve Saboaria
 
-Guia para publicar o site na Netlify (requer PostgreSQL/Neon em produção).
+Guia para publicar o site na Netlify. **O site sobe sem banco** — produtos aparecem do catálogo estático. Quando quiser admin e loja dinâmica, configure o Neon (Passo 1 e 4).
 
 ## Por que precisa de banco na nuvem?
 
@@ -47,11 +47,9 @@ git push -u origin main
 
 ---
 
-## Passo 4 — Variáveis de ambiente na Netlify
+## Passo 4 — Variáveis de ambiente na Netlify (opcional por enquanto)
 
-**Obrigatório antes do deploy.** Sem `DATABASE_URL`, o build falha.
-
-Em **Site configuration** → **Environment variables**, adicione:
+O site funciona sem configurar nada aqui. Quando for usar o painel admin e banco na nuvem, adicione em **Site configuration** → **Environment variables**:
 
 | Variável | Valor |
 |----------|-------|

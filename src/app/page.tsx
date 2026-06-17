@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { prisma } from '@/lib/db';
+import { getPublicProducts } from '@/lib/catalog';
 import { siteImages } from '@/lib/images';
 import Header from '@/components/site/Header';
 import Footer from '@/components/site/Footer';
@@ -11,10 +11,7 @@ import { IconFlame, IconLeaf } from '@/components/icons/Icons';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const products = await prisma.product.findMany({
-    where: { active: true },
-    orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
-  });
+  const products = await getPublicProducts();
 
   const trends = products.filter((p) => p.category === 'destaque');
   const hotProcess = products.filter((p) => p.category === 'hot-process');
