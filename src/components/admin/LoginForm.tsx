@@ -21,9 +21,15 @@ export default function LoginForm() {
       body: JSON.stringify({ email, password }),
     });
 
+    let data: { error?: string } = {};
+    try {
+      data = await res.json();
+    } catch {
+      data = {};
+    }
+
     if (!res.ok) {
-      const data = await res.json();
-      setError(data.error || 'Erro ao entrar');
+      setError(data.error || 'Não foi possível entrar. Tente novamente.');
       setLoading(false);
       return;
     }

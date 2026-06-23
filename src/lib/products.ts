@@ -15,7 +15,12 @@ export function getCategoryLabel(value: string) {
 }
 
 export async function verifyAdmin(email: string, password: string) {
-  const admin = await prisma.admin.findUnique({ where: { email } });
-  if (!admin) return false;
-  return bcrypt.compare(password, admin.passwordHash);
+  try {
+    const admin = await prisma.admin.findUnique({ where: { email } });
+    if (!admin) return false;
+    return bcrypt.compare(password, admin.passwordHash);
+  } catch (error) {
+    console.error('Erro ao verificar admin:', error);
+    throw error;
+  }
 }
