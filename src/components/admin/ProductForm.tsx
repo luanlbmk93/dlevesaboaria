@@ -39,11 +39,48 @@ export default function ProductForm({ initial, productId }: Props) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const selectedCategory = CATEGORIES.find((category) => category.value === form.category);
 
   function update(field: keyof ProductFormData, value: string | boolean | number) {
     setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      let data: { error?: string; url?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        data = {};
+      }
+
+      if (!res.ok) {
+        setError(data.error || 'Não foi possível enviar a imagem');
+        setUploading(false);
+        return;
+      }
+
+      if (data.url) {
+        update('imageUrl', data.url);
+      }
+    } catch {
+      setError('Não foi possível enviar a imagem. Tente novamente.');
+    }
+
+    setUploading(false);
+    e.target.value = '';
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -145,7 +182,32 @@ export default function ProductForm({ initial, productId }: Props) {
       </div>
 
       <div className="form-group">
-        <label>Imagem do produto</label>
+        <label htmlFor="file">Enviar foto do computador ou celular</label>
+        <input
+          id="file"
+          className="form-file"
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+          onChange={handleUpload}
+          disabled={uploading || loading}
+        />
+        <p className="form-hint">JPG, PNG, WEBP, GIF ou AVIF. A foto fica salva automaticamente.</p>
+        {uploading && <p className="form-hint">Enviando imagem...</p>}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="imageUrl">Link da imagem (opcional)</label>
+        <input
+          id="imageUrl"
+          value={form.imageUrl}
+          onChange={(e) => update('imageUrl', e.target.value)}
+          placeholder="/imagens/nome.avif ou https://..."
+        />
+        <p className="form-hint">Use se a imagem já estiver na internet ou na pasta imagens do site.</p>
+      </div>
+
+      <div className="form-group">
+        <label>Ou escolha uma imagem pronta</label>
         <ImagePicker value={form.imageUrl} onChange={(url) => update('imageUrl', url)} />
       </div>
 

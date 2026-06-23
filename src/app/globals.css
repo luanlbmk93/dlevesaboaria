@@ -184,6 +184,22 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 0 0 3px rgba(122, 143, 110, 0.15);
 }
 .form-group textarea { resize: vertical; min-height: 100px; }
+.form-file {
+  padding: 0.65rem;
+  background: var(--cream);
+  cursor: pointer;
+}
+.form-file::file-selector-button {
+  margin-right: 0.75rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 100px;
+  background: var(--sage-dark);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-check { display: flex; align-items: center; gap: 0.5rem; }
 .form-check input { width: auto; }

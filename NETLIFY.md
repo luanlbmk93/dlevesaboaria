@@ -112,9 +112,7 @@ npm run dev
 ## Observações importantes
 
 ### Imagens no admin
-Em produção, **upload de arquivo não funciona** na Netlify. Use:
-- URLs como `/imagens/nome.avif` (imagens que estão em `public/imagens`)
-- Ou links externos (https://...)
+Você pode **enviar foto do celular/computador** direto no formulário de produto. Na Netlify as imagens ficam salvas no armazenamento do site (Blobs).
 
 ### Domínio próprio
 Na Netlify: **Domain management** → adicione seu domínio e siga o DNS.
