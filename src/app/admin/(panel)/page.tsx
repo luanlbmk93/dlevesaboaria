@@ -41,7 +41,10 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="admin-card" style={{ marginTop: '2rem' }}>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '1rem' }}>Ações rápidas</h2>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '0.5rem' }}>Como usar o painel</h2>
+        <p style={{ color: 'var(--charcoal-soft)', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Para adicionar, editar ou remover produtos, clique em <strong>Gerenciar produtos</strong>. É simples: escolha a imagem, preencha nome, preço e salve.
+        </p>
         <div className="admin-actions">
           <Link href="/admin/products" className="btn btn--ghost">Gerenciar produtos</Link>
           <Link href="/admin/products/new" className="btn btn--primary btn--icon">Adicionar produto</Link>

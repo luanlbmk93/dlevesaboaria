@@ -2,10 +2,10 @@ import bcrypt from 'bcryptjs';
 import { prisma } from './db';
 
 export const CATEGORIES = [
-  { value: 'hot-process', label: 'Hot Process' },
-  { value: 'rosto', label: 'Cuidados com o rosto' },
-  { value: 'geral', label: 'Geral' },
-  { value: 'destaque', label: 'Tendência' },
+  { value: 'geral', label: 'Geral', hint: 'Aparece na loja de produtos' },
+  { value: 'hot-process', label: 'Hot Process', hint: 'Sabonetes feitos pelo método Hot Process' },
+  { value: 'rosto', label: 'Cuidados com o rosto', hint: 'Produtos para o rosto' },
+  { value: 'destaque', label: 'Tendência', hint: 'Aparece na seção Tendências da página inicial' },
 ] as const;
 
 export type CategoryValue = (typeof CATEGORIES)[number]['value'];

@@ -57,7 +57,7 @@ O site funciona sem configurar nada aqui. Quando for usar o painel admin e banco
 | `JWT_SECRET` | Uma chave longa e aleatória (ex: `dleve-jwt-producao-2026-xK9mP2`) |
 | `ADMIN_EMAIL` | `admin@dleve.com` |
 | `ADMIN_PASSWORD` | Sua senha do painel admin |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | `5541985380834` |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | `5541988931260` |
 
 Clique em **Deploy site**.
 
@@ -74,7 +74,7 @@ DATABASE_URL="postgresql://...sua-connection-string-do-neon..."
 ADMIN_EMAIL="admin@dleve.com"
 ADMIN_PASSWORD="sua-senha"
 JWT_SECRET="sua-chave"
-NEXT_PUBLIC_WHATSAPP_NUMBER="5541985380834"
+NEXT_PUBLIC_WHATSAPP_NUMBER="5541988931260"
 ```
 
 Depois execute:

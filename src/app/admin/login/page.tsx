@@ -5,7 +5,7 @@ export default function AdminLoginPage() {
     <div className="login-page">
       <div className="login-card">
         <h1>D&apos;Leve Admin</h1>
-        <p>Painel de gerenciamento de produtos</p>
+        <p>Painel simples para gerenciar os produtos da loja</p>
         <LoginForm />
       </div>
     </div>

@@ -12,7 +12,10 @@ export default async function EditProductPage({ params }: Props) {
   return (
     <>
       <div className="admin-header">
-        <h1>Editar produto</h1>
+        <div>
+          <h1>Editar produto</h1>
+          <p className="admin-header__subtitle">{product.name}</p>
+        </div>
       </div>
       <ProductForm
         productId={product.id}

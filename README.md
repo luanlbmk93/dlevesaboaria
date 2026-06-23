@@ -47,7 +47,7 @@ Configure o número no `.env`:
 NEXT_PUBLIC_WHATSAPP_NUMBER="5511XXXXXXXXX"
 ```
 
-Formato: código do país + DDD + número, sem `+` ou espaços. Exemplo: `5541985380834`
+Formato: código do país + DDD + número, sem `+` ou espaços. Exemplo: `5541988931260`
 
 O carrinho monta a lista do pedido e abre o WhatsApp com a mensagem pronta.
 

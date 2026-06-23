@@ -1,6 +1,6 @@
 import type { CartItem } from './cart';
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5541985380834';
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5541988931260';
 
 function normalizeWhatsAppNumber(raw: string) {
   const digits = raw.replace(/\D/g, '');

@@ -22,82 +22,144 @@ type Product = {
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   async function loadProducts() {
+    setError('');
     const res = await fetch('/api/products?admin=true');
     const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error || 'Não foi possível carregar os produtos.');
+      setProducts([]);
+      setLoading(false);
+      return;
+    }
+
     setProducts(data);
     setLoading(false);
   }
 
-  useEffect(() => { loadProducts(); }, []);
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
   async function handleDelete(id: number, name: string) {
-    if (!confirm(`Excluir "${name}"?`)) return;
-    await fetch(`/api/products/${id}`, { method: 'DELETE' });
+    if (!confirm(`Tem certeza que deseja excluir "${name}"?\n\nEssa ação não pode ser desfeita.`)) return;
+
+    const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+    if (!res.ok) {
+      alert('Não foi possível excluir o produto. Tente novamente.');
+      return;
+    }
+
     loadProducts();
   }
 
   return (
     <>
       <div className="admin-header">
-        <h1>Produtos</h1>
+        <div>
+          <h1>Produtos</h1>
+          <p className="admin-header__subtitle">
+            {loading ? 'Carregando...' : `${products.length} produto(s) cadastrado(s)`}
+          </p>
+        </div>
         <Link href="/admin/products/new" className="btn btn--primary btn--icon">
           <IconPlus size={14} />
-          Novo produto
+          Adicionar produto
         </Link>
       </div>
 
       <div className="admin-card">
         {loading ? (
-          <p>Carregando...</p>
+          <p>Carregando produtos...</p>
+        ) : error ? (
+          <p className="form-error">{error}</p>
         ) : products.length === 0 ? (
-          <p>Nenhum produto cadastrado. <Link href="/admin/products/new" style={{ color: 'var(--sage-dark)' }}>Criar o primeiro</Link></p>
+          <div className="admin-empty">
+            <p>Nenhum produto cadastrado ainda.</p>
+            <Link href="/admin/products/new" className="btn btn--primary">Criar o primeiro produto</Link>
+          </div>
         ) : (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Imagem</th>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Categoria</th>
-                <th>Ordem</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((p) => (
-                <tr key={p.id}>
-                  <td>
-                    {p.imageUrl ? (
-                      <Image src={p.imageUrl} alt={p.name} width={48} height={48} style={{ borderRadius: 8, objectFit: 'cover' }} unoptimized />
+          <>
+            <div className="admin-product-cards">
+              {products.map((product) => (
+                <article key={product.id} className="admin-product-card">
+                  <div className="admin-product-card__media">
+                    {product.imageUrl ? (
+                      <Image src={product.imageUrl} alt={product.name} width={72} height={72} unoptimized />
                     ) : (
-                      <div style={{ width: 48, height: 48, background: 'var(--cream-dark)', borderRadius: 8 }} />
+                      <div className="admin-product-card__placeholder" />
                     )}
-                  </td>
-                  <td>
-                    <strong>{p.name}</strong>
-                    {p.featured && <span className="badge badge--featured" style={{ marginLeft: 8 }}>Tendência</span>}
-                  </td>
-                  <td>{formatPrice(p.price)}</td>
-                  <td>{getCategoryLabel(p.category)}</td>
-                  <td>{p.sortOrder}</td>
-                  <td>
-                    <span className={`badge ${p.active ? 'badge--active' : 'badge--inactive'}`}>
-                      {p.active ? 'Ativo' : 'Inativo'}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="admin-actions">
-                      <Link href={`/admin/products/${p.id}/edit`} className="btn btn--ghost btn--sm">Editar</Link>
-                      <button onClick={() => handleDelete(p.id, p.name)} className="btn btn--danger btn--sm">Excluir</button>
+                  </div>
+                  <div className="admin-product-card__body">
+                    <div className="admin-product-card__title">
+                      <strong>{product.name}</strong>
+                      {product.featured && <span className="badge badge--featured">Tendência</span>}
                     </div>
-                  </td>
-                </tr>
+                    <p className="admin-product-card__meta">
+                      {formatPrice(product.price)} · {getCategoryLabel(product.category)} · Ordem {product.sortOrder}
+                    </p>
+                    <span className={`badge ${product.active ? 'badge--active' : 'badge--inactive'}`}>
+                      {product.active ? 'Ativo no site' : 'Oculto'}
+                    </span>
+                  </div>
+                  <div className="admin-product-card__actions">
+                    <Link href={`/admin/products/${product.id}/edit`} className="btn btn--ghost btn--sm">Editar</Link>
+                    <button onClick={() => handleDelete(product.id, product.name)} className="btn btn--danger btn--sm">Excluir</button>
+                  </div>
+                </article>
               ))}
-            </tbody>
-          </table>
+            </div>
+
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                    <th>Ordem</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product.id}>
+                      <td>
+                        {product.imageUrl ? (
+                          <Image src={product.imageUrl} alt={product.name} width={48} height={48} style={{ borderRadius: 8, objectFit: 'cover' }} unoptimized />
+                        ) : (
+                          <div style={{ width: 48, height: 48, background: 'var(--cream-dark)', borderRadius: 8 }} />
+                        )}
+                      </td>
+                      <td>
+                        <strong>{product.name}</strong>
+                        {product.featured && <span className="badge badge--featured" style={{ marginLeft: 8 }}>Tendência</span>}
+                      </td>
+                      <td>{formatPrice(product.price)}</td>
+                      <td>{getCategoryLabel(product.category)}</td>
+                      <td>{product.sortOrder}</td>
+                      <td>
+                        <span className={`badge ${product.active ? 'badge--active' : 'badge--inactive'}`}>
+                          {product.active ? 'Ativo' : 'Inativo'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="admin-actions">
+                          <Link href={`/admin/products/${product.id}/edit`} className="btn btn--ghost btn--sm">Editar</Link>
+                          <button onClick={() => handleDelete(product.id, product.name)} className="btn btn--danger btn--sm">Excluir</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </div>
     </>
