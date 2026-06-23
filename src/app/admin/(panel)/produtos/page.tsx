@@ -65,7 +65,7 @@ export default function AdminProductsPage() {
             {loading ? 'Carregando...' : `${products.length} produto(s) cadastrado(s)`}
           </p>
         </div>
-        <Link href="/admin/products/new" className="btn btn--primary btn--icon">
+        <Link href="/admin/produtos/novo" className="btn btn--primary btn--icon">
           <IconPlus size={14} />
           Adicionar produto
         </Link>
@@ -79,7 +79,7 @@ export default function AdminProductsPage() {
         ) : products.length === 0 ? (
           <div className="admin-empty">
             <p>Nenhum produto cadastrado ainda.</p>
-            <Link href="/admin/products/new" className="btn btn--primary">Criar o primeiro produto</Link>
+            <Link href="/admin/produtos/novo" className="btn btn--primary">Criar o primeiro produto</Link>
           </div>
         ) : (
           <>
@@ -106,7 +106,7 @@ export default function AdminProductsPage() {
                     </span>
                   </div>
                   <div className="admin-product-card__actions">
-                    <Link href={`/admin/products/${product.id}/edit`} className="btn btn--ghost btn--sm">Editar</Link>
+                    <Link href={`/admin/produtos/${product.id}/editar`} className="btn btn--ghost btn--sm">Editar</Link>
                     <button onClick={() => handleDelete(product.id, product.name)} className="btn btn--danger btn--sm">Excluir</button>
                   </div>
                 </article>
@@ -122,7 +122,7 @@ export default function AdminProductsPage() {
                     <th>Preço</th>
                     <th>Categoria</th>
                     <th>Ordem</th>
-                    <th>Status</th>
+                    <th>Situação</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
@@ -150,7 +150,7 @@ export default function AdminProductsPage() {
                       </td>
                       <td>
                         <div className="admin-actions">
-                          <Link href={`/admin/products/${product.id}/edit`} className="btn btn--ghost btn--sm">Editar</Link>
+                          <Link href={`/admin/produtos/${product.id}/editar`} className="btn btn--ghost btn--sm">Editar</Link>
                           <button onClick={() => handleDelete(product.id, product.name)} className="btn btn--danger btn--sm">Excluir</button>
                         </div>
                       </td>

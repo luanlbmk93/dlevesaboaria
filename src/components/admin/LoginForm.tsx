@@ -35,8 +35,8 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
+        <label htmlFor="email">E-mail</label>
+        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" placeholder="seu@email.com" />
       </div>
       <div className="form-group">
         <label htmlFor="password">Senha</label>

@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '**' },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/admin/login', destination: '/admin/entrar', permanent: true },
+      { source: '/admin/products', destination: '/admin/produtos', permanent: true },
+      { source: '/admin/products/new', destination: '/admin/produtos/novo', permanent: true },
+      { source: '/admin/products/:id/edit', destination: '/admin/produtos/:id/editar', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

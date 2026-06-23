@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get(COOKIE_NAME)?.value;
   const email = token ? await verifyToken(token) : null;
 
-  if (request.nextUrl.pathname === '/admin/login') {
+  if (request.nextUrl.pathname === '/admin/entrar') {
     if (email) {
       return NextResponse.redirect(new URL('/admin', request.url));
     }
@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!email) {
-    return NextResponse.redirect(new URL('/admin/login', request.url));
+    return NextResponse.redirect(new URL('/admin/entrar', request.url));
   }
 
   return NextResponse.next();

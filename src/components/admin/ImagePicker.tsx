@@ -11,7 +11,7 @@ type Props = {
 export default function ImagePicker({ value, onChange }: Props) {
   return (
     <div className="image-picker">
-      <p className="form-hint">Toque na imagem que representa o produto. Não precisa fazer upload.</p>
+      <p className="form-hint">Toque na imagem que representa o produto.</p>
       <div className="image-picker__grid">
         {galleryImages.map((image) => {
           const selected = value === image.url;

@@ -32,7 +32,7 @@ export default function ContactForm() {
     const mailto = [
       'mailto:dlevesaboaria@gmail.com',
       `?subject=${encodeURIComponent(`[D'Leve] ${subjectLabels[subject] || subject} - ${firstName}`)}`,
-      `&body=${encodeURIComponent(`Email: ${email}\n\n${message}`)}`,
+      `&body=${encodeURIComponent(`E-mail: ${email}\n\n${message}`)}`,
     ].join('');
 
     window.location.href = mailto;
@@ -55,8 +55,8 @@ export default function ContactForm() {
       </div>
 
       <div className="form-group">
-        <label htmlFor="contact-email">Email *</label>
-        <input id="contact-email" name="email" type="email" placeholder="example@email.com" required autoComplete="email" />
+        <label htmlFor="contact-email">E-mail *</label>
+        <input id="contact-email" name="email" type="email" placeholder="seu@email.com" required autoComplete="email" />
       </div>
 
       <div className="form-group">

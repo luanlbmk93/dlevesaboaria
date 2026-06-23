@@ -15,12 +15,12 @@ export default async function AdminDashboard() {
     <>
       <div className="admin-header">
         <div>
-          <h1>Dashboard</h1>
+          <h1>Início</h1>
           <p style={{ color: 'var(--charcoal-soft)', marginTop: '0.25rem' }}>
             Olá, {session?.email}
           </p>
         </div>
-        <Link href="/admin/products/new" className="btn btn--primary btn--icon">
+        <Link href="/admin/produtos/novo" className="btn btn--primary btn--icon">
           <IconPlus size={14} />
           Novo produto
         </Link>      </div>
@@ -46,8 +46,8 @@ export default async function AdminDashboard() {
           Para adicionar, editar ou remover produtos, clique em <strong>Gerenciar produtos</strong>. É simples: escolha a imagem, preencha nome, preço e salve.
         </p>
         <div className="admin-actions">
-          <Link href="/admin/products" className="btn btn--ghost">Gerenciar produtos</Link>
-          <Link href="/admin/products/new" className="btn btn--primary btn--icon">Adicionar produto</Link>
+          <Link href="/admin/produtos" className="btn btn--ghost">Gerenciar produtos</Link>
+          <Link href="/admin/produtos/novo" className="btn btn--primary btn--icon">Adicionar produto</Link>
           <Link href="/" target="_blank" className="btn btn--ghost">Ver site público</Link>
         </div>
       </div>

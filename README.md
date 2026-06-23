@@ -18,13 +18,13 @@ npm run dev
 ```
 
 - **Site público:** http://localhost:3000
-- **Painel admin:** http://localhost:3000/admin
+- **Painel:** http://localhost:3000/admin/entrar
 
-## Login do admin
+## Entrar no painel
 
 Credenciais padrão (altere no arquivo `.env`):
 
-- Email: `admin@dleve.com`
+- E-mail: `admin@dleve.com`
 - Senha: `admin123`
 
 ## Painel admin
@@ -33,7 +33,7 @@ No painel você pode:
 
 - Criar, editar e excluir produtos
 - Enviar imagens ou usar URL
-- Definir categoria (Geral, Hot Process, Rosto, Destaque)
+- Definir categoria (Geral, Processo quente, Rosto, Tendência)
 - Marcar produtos como ativos/inativos
 - Ordenar produtos por número de ordem
 

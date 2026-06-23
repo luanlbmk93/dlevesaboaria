@@ -10,20 +10,20 @@ export default function AdminSidebar() {
 
   async function handleLogout() {
     await fetch('/api/auth/logout', { method: 'POST' });
-    router.push('/admin/login');
+    router.push('/admin/entrar');
     router.refresh();
   }
 
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar__logo">
-        D<span>&apos;</span>Leve <small style={{ fontSize: '0.6em', opacity: 0.6 }}>Admin</small>
+        D<span>&apos;</span>Leve <small style={{ fontSize: '0.6em', opacity: 0.6 }}>Painel</small>
       </div>
       <nav className="admin-nav">
         <Link href="/admin" className={pathname === '/admin' ? 'active' : ''}>
-          Dashboard
+          Início
         </Link>
-        <Link href="/admin/products" className={pathname.startsWith('/admin/products') ? 'active' : ''}>
+        <Link href="/admin/produtos" className={pathname.startsWith('/admin/produtos') ? 'active' : ''}>
           Produtos
         </Link>
         <Link href="/" target="_blank" className="admin-nav__external">

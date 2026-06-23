@@ -76,7 +76,7 @@ export default async function HomePage() {
               <Link href="/produtos?categoria=hot-process" className="site-category-card">
                 <div className="site-category-card__icon">
                   <IconFlame />
-                </div>                <h2>Sabonetes Hot Process</h2>
+                </div>                <h2>Sabonetes processo quente</h2>
                 <p>{hotProcess.length > 0 ? `${hotProcess.length} produto(s) na loja` : 'Processo ritual que preserva a alma das manteigas vegetais'}</p>
               </Link>
               <Link href="/produtos?categoria=rosto" className="site-category-card">
@@ -115,7 +115,7 @@ export default async function HomePage() {
               <h2 className="section-header__title">Tecida com amor pela saboaria artesanal</h2>
               <div className="site-about__text">
                 <p>A D&apos;Leve nasceu do desejo profundo de transformar o banho em um abraço. Nossa história é tecida com o amor pela saboaria artesanal, onde cada barra conta um segredo da terra.</p>
-                <p>Trabalhamos com a paciência dos métodos Cold e Hot Process, processos rituais que preservam a alma das manteigas vegetais e dos óleos mais puros.</p>
+                <p>Trabalhamos com a paciência dos processos a frio e a quente, rituais que preservam a alma das manteigas vegetais e dos óleos mais puros.</p>
                 <p>Acreditamos que o bem-estar floresce quando respeitamos o tempo da natureza, criando espumas que acolhem sem agredir.</p>
                 <p>Nosso compromisso vai além da limpeza; buscamos resgatar sua conexão com o essencial, proporcionando um respiro de calma em meio ao dia.</p>
               </div>

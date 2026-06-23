@@ -90,7 +90,7 @@ Isso cria as tabelas, o admin e os produtos iniciais.
 ## Passo 6 — Testar
 
 - **Site:** `https://seu-site.netlify.app`
-- **Admin:** `https://seu-site.netlify.app/admin`
+- **Painel:** `https://seu-site.netlify.app/admin/entrar`
 - **Produtos:** `https://seu-site.netlify.app/produtos`
 
 Teste o carrinho e o botão **Enviar pedido pelo WhatsApp**.
@@ -130,7 +130,7 @@ Cada `git push` na branch `main` faz deploy automático.
 - Confira se `DATABASE_URL` está correta nas variáveis da Netlify
 - A string deve começar com `postgresql://`
 
-**Admin não loga**
+**Painel não loga**
 - Rode `npm run setup` com a `DATABASE_URL` de produção
 - Confira `ADMIN_EMAIL` e `ADMIN_PASSWORD` nas variáveis da Netlify
 

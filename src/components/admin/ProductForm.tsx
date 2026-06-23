@@ -77,7 +77,7 @@ export default function ProductForm({ initial, productId }: Props) {
 
     setSuccess(productId ? 'Produto atualizado com sucesso!' : 'Produto criado com sucesso!');
     setLoading(false);
-    setTimeout(() => router.push('/admin/products'), 800);
+    setTimeout(() => router.push('/admin/produtos'), 800);
   }
 
   return (
@@ -180,7 +180,7 @@ export default function ProductForm({ initial, productId }: Props) {
         <button type="submit" className="btn btn--primary btn--full-mobile" disabled={loading}>
           {loading ? 'Salvando...' : productId ? 'Salvar alterações' : 'Criar produto'}
         </button>
-        <button type="button" className="btn btn--ghost btn--full-mobile" onClick={() => router.push('/admin/products')}>
+        <button type="button" className="btn btn--ghost btn--full-mobile" onClick={() => router.push('/admin/produtos')}>
           Voltar
         </button>
       </div>
