@@ -20,7 +20,10 @@ export async function GET(_request: NextRequest, { params }: Props) {
       return NextResponse.json({ error: 'Imagem não encontrada' }, { status: 404 });
     }
 
-    const contentType = result.metadata?.contentType || 'application/octet-stream';
+    const contentType =
+      typeof result.metadata?.contentType === 'string'
+        ? result.metadata.contentType
+        : 'application/octet-stream';
 
     return new NextResponse(result.data, {
       headers: {
