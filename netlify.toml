@@ -6,4 +6,3 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  DATABASE_URL = "file:/tmp/build.db"
