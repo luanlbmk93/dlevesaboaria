@@ -6,7 +6,7 @@ export default function NewProductPage() {
       <div className="admin-header">
         <div>
           <h1>Novo produto</h1>
-          <p className="admin-header__subtitle">Preencha os campos e toque em Criar produto</p>
+          <p className="admin-header__subtitle">Primeiro escolha a foto, depois preencha nome e preço</p>
         </div>
       </div>
       <ProductForm />

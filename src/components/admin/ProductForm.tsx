@@ -123,6 +123,47 @@ export default function ProductForm({ initial, productId }: Props) {
         Preencha os campos abaixo. Depois de salvar, o produto aparece automaticamente no site (se estiver marcado como ativo).
       </p>
 
+      <section className="upload-box">
+        <h2 className="upload-box__title">Foto do produto</h2>
+        <p className="upload-box__text">Toque no botão verde para enviar uma foto do celular ou computador.</p>
+
+        <label htmlFor="file" className="upload-box__button">
+          {uploading ? 'Enviando foto...' : form.imageUrl ? 'Trocar foto' : 'Escolher foto'}
+        </label>
+        <input
+          id="file"
+          className="upload-box__input"
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+          onChange={handleUpload}
+          disabled={uploading || loading}
+        />
+
+        {form.imageUrl && (
+          <div className="upload-box__preview">
+            <Image src={form.imageUrl} alt="Pré-visualização" width={160} height={160} className="image-preview" unoptimized />
+            <p className="form-hint">Foto selecionada. Pode salvar o produto.</p>
+          </div>
+        )}
+
+        <details className="upload-box__more">
+          <summary>Ou use link / imagem pronta</summary>
+          <div className="form-group" style={{ marginTop: '1rem' }}>
+            <label htmlFor="imageUrl">Link da imagem</label>
+            <input
+              id="imageUrl"
+              value={form.imageUrl}
+              onChange={(e) => update('imageUrl', e.target.value)}
+              placeholder="/imagens/nome.avif ou https://..."
+            />
+          </div>
+          <div className="form-group">
+            <label>Imagens prontas do site</label>
+            <ImagePicker value={form.imageUrl} onChange={(url) => update('imageUrl', url)} />
+          </div>
+        </details>
+      </section>
+
       <div className="form-group">
         <label htmlFor="name">Nome do produto *</label>
         <input
@@ -180,43 +221,6 @@ export default function ProductForm({ initial, productId }: Props) {
         />
         <p className="form-hint">Número menor aparece primeiro. Use 1, 2, 3...</p>
       </div>
-
-      <div className="form-group">
-        <label htmlFor="file">Enviar foto do computador ou celular</label>
-        <input
-          id="file"
-          className="form-file"
-          type="file"
-          accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
-          onChange={handleUpload}
-          disabled={uploading || loading}
-        />
-        <p className="form-hint">JPG, PNG, WEBP, GIF ou AVIF. A foto fica salva automaticamente.</p>
-        {uploading && <p className="form-hint">Enviando imagem...</p>}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="imageUrl">Link da imagem (opcional)</label>
-        <input
-          id="imageUrl"
-          value={form.imageUrl}
-          onChange={(e) => update('imageUrl', e.target.value)}
-          placeholder="/imagens/nome.avif ou https://..."
-        />
-        <p className="form-hint">Use se a imagem já estiver na internet ou na pasta imagens do site.</p>
-      </div>
-
-      <div className="form-group">
-        <label>Ou escolha uma imagem pronta</label>
-        <ImagePicker value={form.imageUrl} onChange={(url) => update('imageUrl', url)} />
-      </div>
-
-      {form.imageUrl && (
-        <div className="form-group">
-          <label>Pré-visualização</label>
-          <Image src={form.imageUrl} alt="Pré-visualização" width={140} height={140} className="image-preview" unoptimized />
-        </div>
-      )}
 
       <div className="form-toggles">
         <label className="form-check form-check--card">
